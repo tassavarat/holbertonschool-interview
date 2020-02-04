@@ -5,15 +5,19 @@ def canUnlockAll(boxes):
     s = set()
     a = [0]
 
+    if len(boxes) == 0:
+        return True
     if isinstance(boxes, list):
-        for i in range(len(boxes)):
-            if not isinstance(boxes[a[i]], list):
+        for b in boxes:
+            if not isinstance(b, list):
                 return False
+            for k in b:
+                if not isinstance(k, int) or k < 0 or k > len(boxes) - 1:
+                    return False
+
+        for i in range(len(boxes)):
             a.extend(boxes[a[i]])
         s.update(a)
-        for n in s:
-            if not isinstance(n, int) or n < 0 or n > len(boxes) - 1:
-                return False
         if len(s) == len(boxes):
             return True
 
