@@ -12,7 +12,7 @@ def canUnlockAll(boxes):
             a.extend(boxes[a[i]])
         s.update(a)
         for n in s:
-            if n < 0 or n > len(boxes) - 1:
+            if not isinstance(n, int) or n < 0 or n > len(boxes) - 1:
                 return False
         if len(s) == len(boxes):
             return True
