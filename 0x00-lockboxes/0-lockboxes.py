@@ -11,9 +11,11 @@ def canUnlockAll(boxes):
         for b in boxes:
             if not isinstance(b, list):
                 return False
-            for k in b:
-                if not isinstance(k, int) or k < 0 or k > len(boxes) - 1:
+            for ki in range(len(b)):
+                if not isinstance(b[ki], int):
                     return False
+                if b[ki] < 0 or b[ki] > len(boxes) - 1:
+                    del b[ki]
 
         for i in range(len(boxes)):
             a.extend(boxes[a[i]])
