@@ -2,7 +2,7 @@
 
 /**
  * createnode - creates new linked list node
- * @id: car id
+ * @number: node n value to assign
  *
  * Return: created linked list node
  */
@@ -19,9 +19,11 @@ listint_t *createnode(int number)
 }
 
 /**
- * insertsort - inserts linked list in a sorted order
+ * insert_node - inserts linked list in a sorted order
  * @head: pointer to pointer of head node
- * @new: pointer to new node
+ * @number: node n value to assign
+ *
+ * Return: Newly created node, NULL if failed
  */
 listint_t *insert_node(listint_t **head, int number)
 {
