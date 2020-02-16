@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
 static int NOMEM;
 
@@ -108,6 +107,8 @@ heap_t *levelorder(heap_t **root, int value)
 	{
 		cur = curq->node;
 		pushinsert(cur, &curq, &inserted, &cur->left, value);
+		if (NOMEM)
+			return (NULL);
 		pushinsert(cur, &curq, &inserted, &cur->right, value);
 		if (NOMEM)
 			return (NULL);
