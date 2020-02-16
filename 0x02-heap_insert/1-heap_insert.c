@@ -6,17 +6,18 @@ static int NOMEM;
  * maxheapify - swaps node n values so parent n is greater than child n values
  * @inserted: node n value being swapped
  */
-void maxheapify(heap_t *inserted)
+void maxheapify(heap_t **inserted)
 {
-	heap_t *cur = inserted;
+	heap_t *cur;
 	int tmp;
 
-	for (cur = inserted; cur->parent; cur = cur->parent)
+	for (cur = *inserted; cur->parent; cur = cur->parent)
 		if (cur->n > cur->parent->n)
 		{
 			tmp = cur->parent->n;
 			cur->parent->n = cur->n;
 			cur->n = tmp;
+			*inserted = (*inserted)->parent;
 		}
 }
 
@@ -113,7 +114,7 @@ heap_t *levelorder(heap_t **root, int value)
 		popq(&curq);
 	}
 	if (inserted)
-		maxheapify(inserted);
+		maxheapify(&inserted);
 	return (inserted);
 }
 
@@ -128,7 +129,7 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *inserted;
 
-	if (!*root)
+	if (!root || !*root)
 	{
 		*root = binary_tree_node(*root, value);
 		inserted = *root;
