@@ -79,7 +79,7 @@ heap_t *pushinsert(heap_t *cur, queue **curq, heap_t **inserted, heap_t **dir,
 		if (!pushq(curq, *dir))
 			NOMEM = 1;
 	}
-	else if (!*inserted)
+	else
 	{
 		*dir = binary_tree_node(cur, value);
 		if (!*dir)
@@ -107,8 +107,10 @@ heap_t *levelorder(heap_t **root, int value)
 	while (curq)
 	{
 		cur = curq->node;
-		pushinsert(cur, &curq, &inserted, &cur->left, value);
-		pushinsert(cur, &curq, &inserted, &cur->right, value);
+		if (!inserted)
+			pushinsert(cur, &curq, &inserted, &cur->left, value);
+		if (!inserted)
+			pushinsert(cur, &curq, &inserted, &cur->right, value);
 		if (NOMEM)
 			return (NULL);
 		popq(&curq);
