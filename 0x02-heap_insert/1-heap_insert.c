@@ -115,8 +115,6 @@ heap_t *levelorder(heap_t **root, int value)
 			return (NULL);
 		popq(&curq);
 	}
-	if (inserted)
-		maxheapify(&inserted);
 	return (inserted);
 }
 
@@ -131,7 +129,9 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *inserted;
 
-	if (!root || !*root)
+	if (!root)
+		return (NULL);
+	if (!*root)
 	{
 		*root = binary_tree_node(*root, value);
 		inserted = *root;
@@ -139,6 +139,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	else
 	{
 		inserted = levelorder(root, value);
+		maxheapify(&inserted);
 	}
 	return (inserted);
 }
