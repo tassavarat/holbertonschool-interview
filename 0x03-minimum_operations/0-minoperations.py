@@ -31,7 +31,7 @@ def minOperations(n):
         minimum needed operations
     """
     sum = 0
-    while not prime(n):
+    while n != 0 and not prime(n):
         if n % 2 == 0:
             sum += 2
             n //= 2
