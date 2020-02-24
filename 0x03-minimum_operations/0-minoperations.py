@@ -38,4 +38,6 @@ def minOperations(n):
         elif n % 3 == 0:
             sum += 3
             n //= 3
+        else:
+            return 0
     return sum + n
