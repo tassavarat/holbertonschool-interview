@@ -112,11 +112,6 @@ void add_grids(int grid1[3][3], int grid2[3][3])
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	add_grids(grid1, grid2);
-	if (!stable(grid1))
-	{
-		puts("=");
-		print_grid(grid1);
-	}
 	while (!stable(grid1))
 	{
 		puts("=");
