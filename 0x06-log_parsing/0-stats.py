@@ -7,7 +7,7 @@ sc = -2
 if __name__ == "__main__":
     def printstat():
         print("File size:", file_size)
-        for k, v in stat.items():
+        for k, v in stat_sorted.items():
             if v:
                 print("{}: {}".format(k, v))
 
@@ -15,8 +15,8 @@ if __name__ == "__main__":
         arr = line.split()
         try:
             file_size += int(arr[fs])
-            if arr[sc] in stat:
-                stat[arr[sc]] += 1
+            if arr[sc] in stat_sorted:
+                stat_sorted[arr[sc]] += 1
         except Exception as e:
             print(e)
         return file_size
@@ -26,6 +26,7 @@ if __name__ == "__main__":
         count = 1
         stat = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0,
                 "405": 0, "500": 0}
+        stat_sorted = {k: stat[k] for k in sorted(stat)}
         for line in stdin:
             file_size = parselog(file_size)
             if count % 10 == 0:
