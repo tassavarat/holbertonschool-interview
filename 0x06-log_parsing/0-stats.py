@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Parses a log"""
 from sys import stdin
 
 fs = -1
@@ -26,8 +27,8 @@ if __name__ == "__main__":
             file_size += int(arr[fs])
             if arr[sc] in stat:
                 stat[arr[sc]] += 1
-        except Exception as e:
-            print(e)
+        except Exception:
+            pass
         return file_size
 
     try:
