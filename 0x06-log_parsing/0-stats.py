@@ -6,12 +6,21 @@ sc = -2
 
 if __name__ == "__main__":
     def printstat():
+        """Prints the file size and the status codes along with occurences"""
         print("File size:", file_size)
         for k, v in sorted(stat.items()):
             if v:
                 print("{}: {}".format(k, v))
 
     def parselog(file_size):
+        """Increments stat and file_size based on contents of line
+
+        Args:
+            file_size: current file size
+
+        Returns:
+            file_size
+        """
         arr = line.split()
         try:
             file_size += int(arr[fs])
