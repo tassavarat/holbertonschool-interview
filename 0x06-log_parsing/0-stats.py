@@ -7,7 +7,7 @@ sc = -2
 if __name__ == "__main__":
     def printstat():
         print("File size:", file_size)
-        for k, v in {k: stat[k] for k in sorted(stat)}.items():
+        for k, v in sorted(stat.items()):
             if v:
                 print("{}: {}".format(k, v))
 
