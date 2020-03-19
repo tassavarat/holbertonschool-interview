@@ -31,6 +31,7 @@ if __name__ == "__main__":
             if count % 10 == 0:
                 printstat()
             count += 1
+        printstat()
     except KeyboardInterrupt:
         printstat()
         raise
