@@ -1,9 +1,16 @@
 #include "palindrome.h"
 
+/**
+ * intlen - calculates the amount of digits in a number
+ * @n: number to check
+ *
+ * Return: number of digits
+ */
 size_t intlen(size_t n)
 {
 	size_t len;
 
+	len = 0;
 	while (n)
 	{
 		n /= 10;
