@@ -8,7 +8,7 @@
  */
 int is_palindrome(unsigned long n)
 {
-	char str[BUFSIZ];
+	char str[128];
 	size_t i, end;
 
 	sprintf(str, "%lu", n);
