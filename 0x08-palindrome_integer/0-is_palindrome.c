@@ -1,21 +1,19 @@
 #include "palindrome.h"
 
 /**
- * intlen - calculates the amount of digits in a number
+ * getbeg - finds number number needed to index first digit of n
  * @n: number to check
  *
- * Return: number of digits
+ * Return: beginning index
  */
-size_t intlen(unsigned long n)
+unsigned long getbeg(unsigned long n)
 {
-	size_t len;
+	unsigned long beg = 1;
 
-	len = 0;
-	do {
-		n /= 10;
-		++len;
-	} while (n);
-	return (len);
+	do
+		beg *= 10;
+	while (n /= 10);
+	return (beg / 10);
 }
 
 /**
@@ -27,18 +25,9 @@ size_t intlen(unsigned long n)
 int is_palindrome(unsigned long n)
 {
 	unsigned long beg, end;
-	size_t len, i;
 
-	len = intlen(n);
-	for (beg = 1, i = len; --i; beg *= 10)
-		;
-	end = 1;
-	for (i = 0; i < len / 2; ++i)
-	{
+	for (beg = getbeg(n), end = 1; beg > end; beg /= 10, end *= 10)
 		if (n / beg % 10 != n / end % 10)
 			return (0);
-		beg /= 10;
-		end *= 10;
-	}
 	return (1);
 }
