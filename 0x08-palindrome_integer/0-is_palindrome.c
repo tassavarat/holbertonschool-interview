@@ -6,16 +6,15 @@
  *
  * Return: number of digits
  */
-size_t intlen(size_t n)
+size_t intlen(unsigned long n)
 {
 	size_t len;
 
 	len = 0;
-	while (n)
-	{
+	do {
 		n /= 10;
 		++len;
-	}
+	} while (n);
 	return (len);
 }
 
@@ -27,10 +26,11 @@ size_t intlen(size_t n)
  */
 int is_palindrome(unsigned long n)
 {
-	size_t len, beg, end, i;
+	unsigned long beg, end;
+	size_t len, i;
 
-	len = i = intlen(n);
-	for (beg = 1; --i; beg *= 10)
+	len = intlen(n);
+	for (beg = 1, i = len; --i; beg *= 10)
 		;
 	end = 1;
 	for (i = 0; i < len / 2; ++i)
