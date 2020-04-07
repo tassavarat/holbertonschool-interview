@@ -10,18 +10,18 @@ def validUTF8(data):
     Returns:
         True if valid UTF-8 encoding, otherwise False
     """
-    bytes_on = 0
+    bit_count = 0
     for n in data:
         mask = 1 << 7
-        if not bytes_on:
+        if not bit_count:
             while n & mask:
-                bytes_on += 1
+                bit_count += 1
                 mask >>= 1
-            if not bytes_on:
+            if not bit_count:
                 continue
-            if bytes_on > 4:
+            if bit_count > 4:
                 return False
         elif n >> 6 != 2:
             return False
-        bytes_on -= 1
-    return bytes_on == 0
+        bit_count -= 1
+    return bit_count == 0
