@@ -19,7 +19,9 @@ def validUTF8(data):
                 mask >>= 1
             if not bytes_on:
                 continue
-        elif n >> 6 != 0b10:
+            if bytes_on > 4:
+                return False
+        elif n >> 6 != 2:
             return False
         bytes_on -= 1
     return bytes_on == 0
