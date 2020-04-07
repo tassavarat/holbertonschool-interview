@@ -17,11 +17,10 @@ def validUTF8(data):
             while n & mask:
                 bit_count += 1
                 mask >>= 1
-            if not bit_count:
-                continue
             if bit_count > 4:
                 return False
         elif n >> 6 != 2:
             return False
-        bit_count -= 1
+        if bit_count:
+            bit_count -= 1
     return bit_count == 0
