@@ -6,7 +6,7 @@
 #define SLIDE_LEFT	-1
 #define SLIDE_RIGHT	 1
 
-#define SWAP(line, empt, i)				\
+#define SWAP(line, empt, i)			\
 	do {					\
 		if (line[i])			\
 		{				\
