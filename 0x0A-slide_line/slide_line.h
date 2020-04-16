@@ -6,18 +6,20 @@
 #define SLIDE_LEFT	-1
 #define SLIDE_RIGHT	 1
 
-#define SWAP(line, empt, i)			\
-	do {					\
-		if (line[i])			\
-		{				\
-			line[empt] ^= line[i];	\
-			line[i] ^= line[empt];	\
-			line[empt] ^= line[i];	\
-			break;			\
-		}				\
+#define SWAP()							\
+	do {							\
+		if (merged && !line[i] && !line[i - direction])	\
+			break;					\
+		if (line[i])					\
+		{						\
+			line[empt] ^= line[i];			\
+			line[i] ^= line[empt];			\
+			line[empt] ^= line[i];			\
+			empt -= direction;			\
+		}						\
 	} while (0)
 
-#define MERGE(line, i, direction)					\
+#define MERGE()								\
 	do {								\
 		if (line[i] == line[i - direction])			\
 		{							\
