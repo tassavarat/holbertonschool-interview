@@ -1,24 +1,5 @@
 #include "slide_line.h"
-#include <stdio.h>
 
-/**
- * combine - combines two values together
- * @line: pointer to array of integers
- * @i: pointer to line index
- * @direction: direction to merge values
- *
- * Description: modifies i depending on direction, this is done for the calling
- * function
- */
-void combine(int *line, size_t *i, int direction)
-{
-	if (line[*i] == line[*i - direction])
-	{
-		line[*i] += line[*i - direction];
-		line[*i - direction] ^= line[*i - direction];
-		*i -= direction;
-	}
-}
 /**
  * merge - merges array adjacent identical array values in specified direction
  * @line: pointer to array of integers
@@ -31,36 +12,10 @@ void merge(int *line, size_t size, int direction)
 
 	if (direction == SLIDE_LEFT)
 		for (i = 0; line[i] && i < size; ++i)
-			combine(line, &i, direction);
+			MERGE();
 	else
 		for (i = size - 1; line[i] && (int) i > -1; --i)
-			combine(line, &i, direction);
-}
-
-/**
- * swap - swaps two values in an array
- * @line: pointer to array of integers
- * @direction: direction to slide values
- * @empt: pointer to line index with 0 value
- * @i: line index used to check for non 0 values
- * @merged: specifies if merging has been done
- *
- * Description: modifies empt depending on direction, this is done
- * for the calling function
- * Return: 0 initially, 1 subsequently, returning 1 dependent on merged value
- */
-int swap(int *line, int direction, size_t *empt, size_t i, int merged)
-{
-	if (merged && !line[i] && !line[i - direction])
-		return (1);
-	if (line[i])
-	{
-		line[*empt] ^= line[i];
-		line[i] ^= line[*empt];
-		line[*empt] ^= line[i];
-		*empt -= direction;
-	}
-	return (0);
+			MERGE();
 }
 
 /**
@@ -79,16 +34,14 @@ void slide(int *line, size_t size, int direction)
 		for (empt = 0; line[empt] && empt < size; ++empt)
 			;
 		for (i = empt + 1; i < size; ++i)
-			if (swap(line, direction, &empt, i, merged))
-				break;
+			SWAP();
 	}
 	else
 	{
 		for (empt = size - 1; line[empt] && (int) empt > -1; --empt)
 			;
 		for (i = empt - 1; (int) i > -1; --i)
-			if (swap(line, direction, &empt, i, merged))
-				break;
+			SWAP();
 	}
 	merged = 1;
 }
