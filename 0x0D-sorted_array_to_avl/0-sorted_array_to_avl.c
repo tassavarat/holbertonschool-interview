@@ -22,36 +22,27 @@ avl_t *create_node(int n, avl_t *par)
 
 /**
  * binary_traversal - traverse array in binary search pattern and create nodes
- * @root: double pointer to root node
  * @par: pointer to parent node
  * @a: array of node values
- * @m: middle index
  * @l: left index
  * @r: right index
- * @dir: specifies direction of child node to create, can be 'l' or  'r'
  *
  * Return: final created node, NULL on malloc failure
  */
-avl_t *binary_traversal(avl_t **root, avl_t *par, int *a, int m, int l, int r,
-		char dir)
+avl_t *binary_traversal(avl_t *par, int *a, int l, int r)
 {
+	avl_t *new;
+	int m;
+
 	if (l > r)
-		return (par);
+		return (NULL);
 	m = (l + r) / 2;
-	if (dir == 'l')
-		par = par->left = create_node(a[m], par);
-	else if (dir == 'r')
-		par = par->right = create_node(a[m], par);
-	else
-		par = *root = create_node(a[m], *root);
-	if (!par)
-	{
-		*root = NULL;
-		return (*root);
-	}
-	binary_traversal(root, par, a, m, l, m - 1, 'l');
-	binary_traversal(root, par, a, m, m + 1, r, 'r');
-	return (par);
+	new = create_node(a[m], par);
+	if (!new)
+		return (NULL);
+	new->left = binary_traversal(new, a, l, m - 1);
+	new->right = binary_traversal(new, a, m + 1, r);
+	return (new);
 }
 
 /**
@@ -63,9 +54,5 @@ avl_t *binary_traversal(avl_t **root, avl_t *par, int *a, int m, int l, int r,
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	avl_t *root = NULL, *node = NULL;
-
-	binary_traversal(&root, node, array, (0 + size - 1) / 2, 0, size - 1,
-			'\0');
-	return (root);
+	return (binary_traversal(NULL, array, 0, size - 1));
 }
