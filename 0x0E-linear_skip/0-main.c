@@ -18,6 +18,9 @@ int main(void)
 	int array[] = {
 		0, 1, 2, 3, 4, 7, 12, 15, 18, 19, 23, 53, 61, 62, 76, 99
 	};
+	int array2[] = {
+		0, 1, 2, 3, 4, 7, 12, 15, 18, 19, 23, 53, 61, 62, 76, 99, 101
+	};
 	size_t size = sizeof(array) / sizeof(array[0]);
 
 	list = create_skiplist(array, size);
@@ -39,5 +42,27 @@ int main(void)
 	printf("Found %d at index: %lu\n", 0, res->index);
 
 	free_skiplist(list);
+
+	size = sizeof(array2) / sizeof(array2[0]);
+	list = create_skiplist(array2, size);
+	print_skiplist(list);
+
+	res =  linear_skip(list, 53);
+	printf("Found %d at index: %lu\n\n", 53, res->index);
+	res =  linear_skip(list, 2);
+	printf("Found %d at index: %lu\n\n", 2, res->index);
+	res =  linear_skip(list, 999);
+	printf("Found %d at index: %p\n\n", 999, (void *) res);
+	res =  linear_skip(list, 54);
+	printf("Found %d at index: %p\n\n", 54, (void *) res);
+	res =  linear_skip(NULL, 53);
+	printf("(NULL list) Found %d at index: %p\n\n", 53, (void *) res);
+	res =  linear_skip(list, 18);
+	printf("Found %d at index: %lu\n\n", 18, res->index);
+	res =  linear_skip(list, 0);
+	printf("Found %d at index: %lu\n", 0, res->index);
+
+	free_skiplist(list);
+
 	return (EXIT_SUCCESS);
 }
