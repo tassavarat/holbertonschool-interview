@@ -50,5 +50,5 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 			return (check_lin(list, value, stop));
 		}
 	}
-	return (list);
+	return (NULL);
 }
