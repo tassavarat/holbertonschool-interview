@@ -5,15 +5,22 @@
  */
 const request = require('request');
 
+function pchars (chars, i) {
+  if (i === chars.length) return;
+  request(chars[i], function (err, resp, body) {
+    if (err) console.log(err);
+    else {
+      console.log(JSON.parse(body).name);
+      pchars(chars, ++i);
+    }
+  });
+}
+
 request(`https://swapi-api.hbtn.io/api/films/${process.argv[2]}/`,
   function (err, resp, body) {
     if (err) console.log(err);
     else {
-      for (const i of JSON.parse(body).characters) {
-        request(i, function (err, resp, body) {
-          if (err) console.log(err);
-          else console.log(JSON.parse(body).name);
-        });
-      }
+      const chars = JSON.parse(body).characters;
+      pchars(chars, 0);
     }
   });
