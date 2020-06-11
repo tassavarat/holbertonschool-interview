@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""rain module"""
 
 def rain(walls):
     """Compute how much water can be trapped
