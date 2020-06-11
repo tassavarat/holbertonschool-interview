@@ -25,5 +25,5 @@ def rain(walls):
                 water += rmax - walls[r]
             else:
                 rmax = walls[r]
-            r += 1
+            r -= 1
     return water
