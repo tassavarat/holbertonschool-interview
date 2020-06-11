@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Trapping rain water module"""
+"""rain module"""
+
 
 def rain(walls):
     """Compute how much water can be trapped
@@ -10,20 +11,20 @@ def rain(walls):
     Returns:
         amount of water able to be trapped
     """
-    l = water = lmax = rmax = 0
-    r = len(walls) - 1
+    left = water = lmax = rmax = 0
+    right = len(walls) - 1
 
-    while l < r:
-        if walls[l] < walls[r]:
-            if walls[l] < lmax:
-                water += lmax - walls[l]
+    while left < right:
+        if walls[left] < walls[right]:
+            if walls[left] < lmax:
+                water += lmax - walls[left]
             else:
-                lmax = walls[l]
-            l += 1
+                lmax = walls[left]
+            left += 1
         else:
-            if walls[r] < rmax:
-                water += rmax - walls[r]
+            if walls[right] < rmax:
+                water += rmax - walls[right]
             else:
-                rmax = walls[r]
-            r -= 1
+                rmax = walls[right]
+            right -= 1
     return water
