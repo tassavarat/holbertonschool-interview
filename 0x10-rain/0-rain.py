@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""trapping rain water module"""
+"""Trapping rain water module"""
 
 def rain(walls):
     """Compute how much water can be trapped
