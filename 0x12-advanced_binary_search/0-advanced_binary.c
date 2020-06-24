@@ -53,6 +53,5 @@ int advanced_binary(int *array, size_t size, int value)
 {
 	if (!array || !size)
 		return (-1);
-	print_search(array, 0, size - 1);
 	return (binary_search(array, value, 0, size - 1));
 }
