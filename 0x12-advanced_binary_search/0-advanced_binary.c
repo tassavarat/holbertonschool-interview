@@ -30,7 +30,14 @@ int binary_search(int *a, int target, int l, int r)
 	int i;
 
 	if (l == r)
-		return (a[l] == target ? l : -1);
+	{
+		if (a[l] != target)
+		{
+			print_search(a, l, r);
+			return (-1);
+		}
+		return (l);
+	}
 	print_search(a, l, r);
 	i = (l + r) / 2;
 	if (a[i] < target)
