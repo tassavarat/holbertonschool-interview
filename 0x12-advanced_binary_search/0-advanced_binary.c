@@ -30,15 +30,14 @@ int binary_search(int *a, int target, int l, int r)
 	int i;
 
 	if (l == r)
-		return (l);
+		return (a[l] == target ? l : -1);
 	print_search(a, l, r);
 	i = (l + r) / 2;
 	if (a[i] < target)
 		l = i + 1;
 	else
 		r = i;
-	l = binary_search(a, target, l, r);
-	return (a[l] == target ? l : -1);
+	return (binary_search(a, target, l, r));
 }
 
 /**
@@ -54,5 +53,6 @@ int advanced_binary(int *array, size_t size, int value)
 {
 	if (!array || !size)
 		return (-1);
+	print_search(array, 0, size - 1);
 	return (binary_search(array, value, 0, size - 1));
 }
