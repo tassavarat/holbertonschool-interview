@@ -41,9 +41,10 @@ def count_words(subreddit, word_list):
     Returns: OrderedDict with keys as keywords and occurrences as values or
     None on request failure
     """
-    all_cnt = collections.Counter(fill_list(subreddit))
-    if all_cnt is None:
+    hot_list = fill_list(subreddit)
+    if hot_list is None:
         return None
+    all_cnt = collections.Counter(hot_list)
     filtered_cnt = collections.OrderedDict()
     for word in word_list:
         if all_cnt[word] > 0:
