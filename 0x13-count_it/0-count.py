@@ -49,6 +49,4 @@ def count_words(subreddit, word_list):
         if all_cnt[word] > 0:
             print("{}: {}".format(word, all_cnt[word]))
             filtered_cnt[word] = all_cnt[word]
-    if len(filtered_cnt) == 0:
-        print()
     return filtered_cnt
