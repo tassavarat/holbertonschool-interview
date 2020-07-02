@@ -17,7 +17,7 @@ def fill_list(subreddit, hot_list=[], after=""):
     """
     req = requests.get("https://reddit.com/r/{}/hot.json?after={}".
                        format(subreddit, after),
-                       headers={"User-agent": "Custom"})
+                       headers={"User-agent": "agent"})
     if req.status_code != 200:
         return None
     if after is None:
@@ -47,7 +47,8 @@ def count_words(subreddit, word_list):
     all_cnt = collections.Counter(hot_list)
     filtered_cnt = collections.OrderedDict()
     for word in word_list:
-        if all_cnt[word] > 0:
-            print("{}: {}".format(word, all_cnt[word]))
-            filtered_cnt[word] = all_cnt[word]
+        word_l = word.lower()
+        if all_cnt[word_l] > 0:
+            print("{}: {}".format(word, all_cnt[word_l]))
+            filtered_cnt[word_l] = all_cnt[word_l]
     return filtered_cnt
