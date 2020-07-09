@@ -1,4 +1,5 @@
 #include "binary_trees.h"
+#include <stdio.h>
 
 /**
  * swap_nodes - swap data of two specified nodes
@@ -47,8 +48,7 @@ heap_t *max_heapify(heap_t *node)
  * @node: pointer to root node
  * @n: one-indexed n-th node to find
  *
- * Return: pointer to specified node, last node in tree if n greater than
- * number of nodes in tree, or NULL on error
+ * Return: pointer to specified node or NULL on error
  */
 heap_t *n_node(heap_t *node, int n)
 {
@@ -76,6 +76,9 @@ heap_t *n_node(heap_t *node, int n)
 				break;
 		}
 	}
+	printf("bit_idx: %i\n", bit_idx);
+	if (bit_idx > 0)
+		return (NULL);
 	return (node);
 }
 
@@ -107,7 +110,7 @@ int heap_extract(heap_t **root)
 
 	if (!root || !*root)
 		return (0);
-	if (prev_root != *root)
+	if ((prev_root != *root && size == 0) || !n_node(*root, size + 1))
 	{
 		prev_root = *root;
 		size = get_size(*root);
