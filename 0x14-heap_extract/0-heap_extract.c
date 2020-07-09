@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
 /**
  * swap_nodes - swap data of two specified nodes
@@ -76,7 +75,6 @@ heap_t *n_node(heap_t *node, int n)
 				break;
 		}
 	}
-	printf("bit_idx: %i\n", bit_idx);
 	if (bit_idx > 0)
 		return (NULL);
 	return (node);
