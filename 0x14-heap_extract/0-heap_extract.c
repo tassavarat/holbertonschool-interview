@@ -31,7 +31,7 @@ heap_t *max_heapify(heap_t *node)
 		return (NULL);
 	do {
 		greatest = NULL;
-		if (node->left && node->n <= node->left->n && greatest)
+		if (node->left && node->n <= node->left->n)
 			greatest = node->left;
 		if (node->right && node->n <= node->right->n &&
 				(!greatest || greatest->n < node->right->n))
