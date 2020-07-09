@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>	/* debug */
 
 /**
  * swap_nodes - swap data of two specified nodes
