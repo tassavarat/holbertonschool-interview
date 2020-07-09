@@ -53,7 +53,7 @@ heap_t *n_node(heap_t *node, int n)
 {
 	int bit_idx, mask;
 
-	if (!node || n < 0)
+	if (!node || n < 1)
 		return (NULL);
 	for (bit_idx = 0; 1 << (bit_idx + 1) <=  n; ++bit_idx)
 		;
@@ -75,7 +75,7 @@ heap_t *n_node(heap_t *node, int n)
 				break;
 		}
 	}
-	if (bit_idx > 0)
+	if (bit_idx > -1)
 		return (NULL);
 	return (node);
 }
@@ -108,7 +108,7 @@ int heap_extract(heap_t **root)
 
 	if (!root || !*root)
 		return (0);
-	if (prev_root != *root && (size == 0 || !n_node(*root, size + 1)))
+	if (prev_root != *root || (n_node(*root, size + 1)))
 	{
 		prev_root = *root;
 		size = get_size(*root);
