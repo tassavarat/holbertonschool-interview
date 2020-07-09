@@ -34,7 +34,8 @@ heap_t *max_heapify(heap_t *node)
 		if (node->left && node->n <= node->left->n &&
 				(!greatest || greatest->n < node->left->n))
 			greatest = node->left;
-		if (node->right && greatest->n < node->right->n)
+		if (node->right && node->n <= node->right->n &&
+				(!greatest || greatest->n < node->right->n))
 			greatest = node->right;
 		if (greatest)
 			node = swap_nodes(node, greatest);
