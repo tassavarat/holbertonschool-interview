@@ -125,7 +125,7 @@ int heap_extract(heap_t **root)
 	else
 	{
 		data = (*root)->n;
-		root = NULL;
+		*root = NULL;
 	}
 	free(node);
 	--size;
