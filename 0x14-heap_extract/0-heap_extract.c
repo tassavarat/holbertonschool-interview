@@ -108,7 +108,7 @@ int heap_extract(heap_t **root)
 
 	if (!root || !*root)
 		return (0);
-	if ((prev_root != *root && size == 0) || !n_node(*root, size + 1))
+	if (prev_root != *root && (size == 0 || !n_node(*root, size + 1)))
 	{
 		prev_root = *root;
 		size = get_size(*root);
