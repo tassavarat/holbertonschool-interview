@@ -11,6 +11,11 @@ void pproduct(int *product, size_t len)
 {
 	size_t i;
 
+	if (product == NULL || len == 0)
+	{
+		printf("0\n");
+		return;
+	}
 	for (i = *product ? 0 : 1; i < len; ++i)
 		printf("%i", product[i]);
 	putchar('\n');
@@ -73,6 +78,11 @@ int main(int argc, char *argv[])
 	size_t len1, len2;
 
 	check_error(argc, argv + 1);
+	if (*argv[1] == '0' || *argv[2] == '0')
+	{
+		pproduct(NULL, 0);
+		return (0);
+	}
 	len1 = strlen(argv[1]), len2 = strlen(argv[2]);
 	product = calloc(len1 + len2, sizeof(*product));
 	if (product == NULL)
