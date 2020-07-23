@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""rotate_2d_matrix module"""
 
 
 def rotate_2d_matrix(matrix):
