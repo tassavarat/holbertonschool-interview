@@ -8,8 +8,6 @@ def rotate_2d_matrix(matrix):
     Args:
         matrix: 2-D matrix to rotate
     """
-    if not matrix or len(matrix) == 0:
-        return
     size = len(matrix)
     for i in range(size // 2):
         for j in range(i, size - 1 - i):
