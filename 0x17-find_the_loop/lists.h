@@ -17,4 +17,6 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
+listint_t *find_listint_loop(listint_t *head);
+
 #endif /* LISTS_H */
