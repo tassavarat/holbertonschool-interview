@@ -14,18 +14,18 @@ void merge(int *arr, int *cpy_arr, size_t beg, size_t mid, size_t n)
 	size_t i, l, r;
 
 	printf("Merging...\n[left]: ");
-	print_array(arr + beg, mid - beg);
+	print_array(cpy_arr + beg, mid - beg);
 	printf("[right]: ");
-	print_array(arr + mid, n - mid);
+	print_array(cpy_arr + mid, n - mid);
 	for (i = l = beg, r = mid; i < n; ++i)
 	{
-		if (l < mid && (r >= n || arr[l] <= arr[r]))
-			cpy_arr[i] = arr[l++];
+		if (l < mid && (r >= n || cpy_arr[l] <= cpy_arr[r]))
+			arr[i] = cpy_arr[l++];
 		else
-			cpy_arr[i] = arr[r++];
+			arr[i] = cpy_arr[r++];
 	}
 	printf("[Done]: ");
-	print_array(cpy_arr + beg, n - beg);
+	print_array(arr + beg, n - beg);
 }
 
 /**
