@@ -1,64 +1,67 @@
 #include "sort.h"
 #include <string.h>
 
-void merge(int *merge_arr, int *arr, size_t beg, size_t mid, size_t end)
+/**
+ * merge - merge subarrays into sorted array
+ * @arr: array to sort
+ * @cpy_arr: copy of array to sort
+ * @beg: start index of left subarray
+ * @mid: start index of right subarray
+ * @n: size of array
+ */
+void merge(int *arr, int *cpy_arr, size_t beg, size_t mid, size_t n)
 {
 	size_t i, l, r;
 
 	printf("Merging...\n[left]: ");
-	print_array(merge_arr + beg, mid - beg);
+	print_array(arr + beg, mid - beg);
 	printf("[right]: ");
-	print_array(merge_arr + mid, end - mid);
-	for (i = l = beg, r = mid; i < end; ++i)
+	print_array(arr + mid, n - mid);
+	for (i = l = beg, r = mid; i < n; ++i)
 	{
-		if (l < mid && (r >= end || merge_arr[l] <= merge_arr[r]))
-			arr[i] = merge_arr[l++];
+		if (l < mid && (r >= n || arr[l] <= arr[r]))
+			cpy_arr[i] = arr[l++];
 		else
-			arr[i] = merge_arr[r++];
+			cpy_arr[i] = arr[r++];
 	}
 	printf("[Done]: ");
-	print_array(arr + beg, end - beg);
+	print_array(cpy_arr + beg, n - beg);
 }
 
-void splitmerge(int *arr, int *merge_arr, size_t beg, size_t end)
+/**
+ * splitmerge - divide unsorted array into subarrays
+ * @arr: array to sort
+ * @cpy_arr: copy of array to sort
+ * @beg: beginning index
+ * @n: size of array
+ */
+void splitmerge(int *arr, int *cpy_arr, size_t beg, size_t n)
 {
 	size_t mid;
 
-	if (end - beg <= 1)
+	if (n - beg <= 1)
 		return;
-	mid = (beg + end) / 2;
-	splitmerge(merge_arr, arr, beg, mid);
-	splitmerge(merge_arr, arr, mid, end);
-	merge(merge_arr, arr, beg, mid, end);
+	mid = (beg + n) / 2;
+	splitmerge(cpy_arr, arr, beg, mid);
+	splitmerge(cpy_arr, arr, mid, n);
+	merge(arr, cpy_arr, beg, mid, n);
 }
 
 /**
- * copyarray - copy src to dest array
- */
-void copyarray(int *src, int *dest, size_t size)
-{
-	size_t i;
-
-	for (i = 0; i < size; ++i)
-		dest[i] = src[i];
-}
-
-/**
- * merge_sort - sort an int array in ascending order using merge sort algorithm
+ * merge_sort - sort an int array in ascning order using merge sort algorithm
  * @array: array to sort
  * @size: size of array
  */
 void merge_sort(int *array, size_t size)
 {
-	int *merge_arr;
+	int *cpy_arr;
 
 	if (!array || size < 2)
 		return;
-	merge_arr = malloc(size * sizeof(*merge_arr));
-	if (!merge_arr)
+	cpy_arr = malloc(size * sizeof(*cpy_arr));
+	if (!cpy_arr)
 		return;
-	copyarray(array, merge_arr, size);
-	/* memcpy(merge_arr, array, size); */
-	splitmerge(array, merge_arr, 0, size);
-	free(merge_arr);
+	memcpy(cpy_arr, array, size * sizeof(*cpy_arr));
+	splitmerge(array, cpy_arr, 0, size);
+	free(cpy_arr);
 }
