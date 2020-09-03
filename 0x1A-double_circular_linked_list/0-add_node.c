@@ -33,16 +33,16 @@ List *add_node_begin(List **list, char *str)
 	new = create_node(str);
 	if (!new)
 		return (NULL);
-	*list = new;
 	if (!*list)
 	{
-		(*list)->next = (*list)->prev = new;
+		*list = new, (*list)->next = (*list)->prev = new;
 	}
 	else
 	{
 		new->prev = (*list)->prev, new->next = *list;
 		(*list)->prev = (*list)->prev->next = new;
 	}
+	*list = new;
 	return (new);
 }
 

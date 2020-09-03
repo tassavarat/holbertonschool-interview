@@ -43,14 +43,14 @@ int main(void)
 
 	printf("Added to the end:\n");
 	print_list(list);
-	/* list = NULL; */
-	/* add_node_begin(&list, "Holberton"); */
-	/* add_node_begin(&list, "School"); */
-	/* add_node_begin(&list, "Full"); */
-	/* add_node_begin(&list, "Stack"); */
-	/* add_node_begin(&list, "Engineer"); */
+	list = NULL;
+	add_node_begin(&list, "Holberton");
+	add_node_begin(&list, "School");
+	add_node_begin(&list, "Full");
+	add_node_begin(&list, "Stack");
+	add_node_begin(&list, "Engineer");
 
-	/* printf("Added to the beginning:\n"); */
-	/* print_list(list); */
+	printf("Added to the beginning:\n");
+	print_list(list);
 	return (0);
 }
