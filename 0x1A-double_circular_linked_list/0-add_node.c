@@ -10,6 +10,7 @@ void update_links(List **list, List *new)
 	if (!*list)
 	{
 		*list = new, (*list)->next = (*list)->prev = new;
+		new->next = new->prev = new;
 	}
 	else
 	{
