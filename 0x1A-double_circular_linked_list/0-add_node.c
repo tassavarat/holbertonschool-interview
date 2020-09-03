@@ -1,6 +1,24 @@
 #include "list.h"
 
 /**
+ * update_links - updates pointers for linked list
+ * @list: linked list being inserted to
+ * @new: pointer to newly created node
+ */
+void update_links(List **list, List *new)
+{
+	if (!*list)
+	{
+		*list = new, (*list)->next = (*list)->prev = new;
+	}
+	else
+	{
+		new->prev = (*list)->prev, new->next = *list;
+		(*list)->prev = (*list)->prev->next = new;
+	}
+}
+
+/**
  * create_node - create linked list node
  * @str: string to initialise list data to
  *
@@ -33,15 +51,7 @@ List *add_node_begin(List **list, char *str)
 	new = create_node(str);
 	if (!new)
 		return (NULL);
-	if (!*list)
-	{
-		*list = new, (*list)->next = (*list)->prev = new;
-	}
-	else
-	{
-		new->prev = (*list)->prev, new->next = *list;
-		(*list)->prev = (*list)->prev->next = new;
-	}
+	update_links(list, new);
 	*list = new;
 	return (new);
 }
@@ -60,14 +70,6 @@ List *add_node_end(List **list, char *str)
 	new = create_node(str);
 	if (!new)
 		return (NULL);
-	if (!*list)
-	{
-		*list = new, (*list)->next = (*list)->prev = new;
-	}
-	else
-	{
-		new->prev = (*list)->prev, new->next = *list;
-		(*list)->prev = (*list)->prev->next = new;
-	}
+	update_links(list, new);
 	return (new);
 }
