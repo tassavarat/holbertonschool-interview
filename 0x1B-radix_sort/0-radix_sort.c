@@ -52,7 +52,7 @@ void radix_sort(int *array, size_t size)
 {
 	int max, place, *sorted;
 
-	if (!array || !size)
+	if (!array || size < 2)
 		return;
 	sorted = calloc(size, sizeof(*sorted));
 	if (!sorted)
