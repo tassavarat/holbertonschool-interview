@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <stdio.h>
 
 /**
  * csort_radix - counting sort to be called by radix_sort
@@ -60,6 +59,9 @@ void radix_sort(int *array, size_t size)
 		return;
 	max = find_max(array, size);
 	for (place = 1; max / place > 0; place *= BASE)
+	{
 		csort_radix(array, size, place, sorted);
+		print_array(array, size);
+	}
 	free(sorted);
 }
