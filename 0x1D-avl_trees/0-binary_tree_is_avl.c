@@ -1,6 +1,14 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
+/**
+ * avl_check - check if BST and balance properties are satisfied
+ * @node: pointer to root node of tree to check
+ * @min: min range value node->n must be greater than
+ * @min: max range value node->n must be less than
+ * @height: current height of tree
+ *
+ * Return: 1 if valid AVL tree, 0 if not
+ */
 int avl_check(const binary_tree_t *node, int min, int max, int *height)
 {
 	int height_l, height_r;
