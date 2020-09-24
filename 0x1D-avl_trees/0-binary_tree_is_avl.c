@@ -4,7 +4,7 @@
  * avl_check - check if BST and balance properties are satisfied
  * @node: pointer to root node of tree to check
  * @min: min range value node->n must be greater than
- * @min: max range value node->n must be less than
+ * @max: max range value node->n must be less than
  * @height: current height of tree
  *
  * Return: 1 if valid AVL tree, 0 if not
