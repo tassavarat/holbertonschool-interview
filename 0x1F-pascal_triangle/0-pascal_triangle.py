@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""0-pascal_triangle module"""
+
 
 def pascal_triangle(n):
     """Create Pascal's triangle of n height
